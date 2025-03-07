@@ -1,0 +1,94 @@
+/* Conteneur principal */
+.main_product {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  gap: 30px;
+  max-height: 95%;
+  margin: 20px 50px 0px 0px;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(20, 20, 20, 0.4);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+/* Image produit */
+.image_produit {
+  max-width: 150px;
+  height: auto;
+  max-height: 250px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+}
+
+/* Conteneur secondaire */
+.main_secondaire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 50px;
+  color: white;
+  text-shadow: 0 0 5px cyan;
+}
+
+/* Boutons */
+.boutons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+button {
+  background: linear-gradient(45deg, #00ffff, #0088ff);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  height: 45px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+  padding: 0 20px;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #0088ff, #00ffff);
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 255, 255, 0.8);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 1);
+}
+
+/* les textes */
+.temps, .train {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.9);
+  color: cyan;
+  border: 1px solid cyan;
+  border-radius: 12px;
+  height: 40px;
+  padding: 0 15px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.temps:hover, .train:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px cyan;
+}

@@ -1,0 +1,28 @@
+<div class="sidebar">
+  <img src="/logo7.png" alt="Logo du monde" class="world-logo" />
+  <img src="unlocks5.png" (click)="openPopup('unlocks')" class="icon"/>
+  <img src="upgrades.png" (click)="openPopup('unlocks')" class="icon"/>
+  <img src="managers.png" (click)="openPopup('managers')" class="icon"/>
+  <img src="investors.png" (click)="openPopup('investors')" class="icon"/>
+</div>
+
+<!-- Popup -->
+<div class="popup" *ngIf="isPopupOpen" (click)="closePopup()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closePopup()">X</button>
+    
+    <ng-container *ngIf="activePage === 'unlocks'">
+      <app-unlocks></app-unlocks>
+    </ng-container>
+
+    <ng-container *ngIf="activePage === 'managers'">
+      <app-managers></app-managers>
+    </ng-container>
+
+    <ng-container *ngIf="activePage === 'investors'">
+      <app-investors></app-investors>
+    </ng-container>
+  </div>
+</div>
+
+

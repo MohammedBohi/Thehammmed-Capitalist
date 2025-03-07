@@ -1,0 +1,80 @@
+.main_unmanager {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    justify-items: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */ 
+    margin: 0;
+}
+
+.text_manager{
+    display: flex;
+    flex-direction: column;
+    justify-items: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    gap: 20px;
+}
+  
+  button {
+    background: linear-gradient(45deg, #3b3b3b, #000000);
+    color: cyan;
+    border: 1px solid cyan;
+    border-radius: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    height: 100px;  
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+    padding: 0 20px;
+  }
+  
+  button:hover {
+    background: linear-gradient(45deg, #0088ff, #00ffff);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 255, 255, 0.8);
+    color: rgb(223, 244, 250);
+  }
+  
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 1);
+  }
+  
+  /* les textes */
+  .nom_manager{
+    font-size: 33px; /* taille du texte */
+    font-weight: bold;
+    font-family: "Orbitron", sans-serif;
+    text-transform: uppercase; /* Met en majuscules */
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0px 0px 5px #00f7ff, 0px 0px 10px #000f20;
+    letter-spacing: 2px; /* Espacement ecriture */
+  }
+
+
+  .bonus_manager,
+  .prix_manager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Orbitron", sans-serif;
+  }
+
+  .bonus_manager{
+    font-style: italic;
+  }
+  
+  .text_engager{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Orbitron", sans-serif;
+    text-transform: uppercase; /* Met en majuscules */
+    letter-spacing: 2px; /* Espacement ecriture */
+  }

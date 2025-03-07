@@ -1,0 +1,112 @@
+.main_ange {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  gap: 60px;
+  width: auto;
+}
+
+.entete {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  gap: 30px;
+}
+
+.titre_ange {
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  color: #00eaff;
+  text-shadow: 0px 0px 5px #fafafa, 0px 0px 20px #000f20;
+  letter-spacing: 2px;
+  margin-top: 90px;
+}
+
+.meteorite {
+  width: 250px;
+  height: auto;
+}
+
+.infos_anges {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 15%; /*hauteur*/
+  width: 60%; /*largeur*/
+  border-radius: 15px;
+  background: linear-gradient(
+    145deg,
+    rgba(15, 15, 15, 0.8),
+    rgba(0, 0, 0, 0.6)
+  );
+  box-shadow: 0 0 5px rgba(0, 255, 255);
+  border: 1px solid cyan;
+  padding: 90px;
+  gap: 30px;
+}
+
+.bonus_anges,
+.nombre_ange,
+.nombre_nv_ange {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif;
+  text-align: left;
+  padding: 10px;
+  width: 98%;
+}
+
+.bonus_anges {
+  font-size: 40px;
+  text-transform: uppercase;
+}
+
+.nombre_ange,
+.nombre_nv_ange {
+  font-size: 35px;
+}
+
+button {
+  margin-left: 43%;
+  background: linear-gradient(45deg, #3b3b3b, #000000);
+  color: cyan;
+  border: 1px solid cyan;
+  border-radius: 12px;
+  cursor: pointer;
+  height: 150px;
+  max-width: 500px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+  padding: 0 20px;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #0088ff, #00ffff);
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 255, 255, 0.8);
+  color: rgb(223, 244, 250);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 1);
+}
+
+.text_claim {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase; /* Met en majuscules */
+  letter-spacing: 2px; /* Espacement ecriture */
+}

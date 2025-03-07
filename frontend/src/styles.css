@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+body { 
+    background-image: url("../public/background2.jpeg"); 
+    background-color: grey;
+    background-size: cover;
+    background-position: top; /* l'image est au top✨*/
+    background-repeat: no-repeat;
+    width: 100vw; /* Largeur totale de l'écran */
+    height: 100vh; /* Hauteur totale de l'écran */
+    margin: 0; 
+    overflow: hidden; /* Empêche le défilement si l'image est plus grande */ 
+    image-rendering: pixelated;
+}

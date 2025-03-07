@@ -1,0 +1,28 @@
+<div class="main_product">
+  <img
+    src="/blanc.png"
+    alt="image"
+    class="image_produit"
+    (click)="incrementCount()"
+  />
+  <!-- <img [src]="product?.logo" alt="{{ product?.name }}" /> -->
+    <!-- #00f1ff -->
+  <div class="main_secondaire">
+    <app-progressbar
+      [run]="true"
+      [auto]="true"
+      frontcolor="#368484"
+      [orientation]="Orientation.horizontal"
+      [vitesse]="10000"
+      [initialValue]="0"
+    >
+    </app-progressbar>
+    <div class="boutons">
+      <button class="train">
+        <div>Entrainer:</div>
+        <div>Le prix héhéhé</div>
+      </button>
+      <div class="temps"><app-timer [duration]="10000"></app-timer></div>
+    </div>
+  </div>
+</div>

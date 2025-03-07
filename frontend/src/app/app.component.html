@@ -1,0 +1,28 @@
+<main class="classe">
+  <div class="main_principal" #mainPrincipal>
+    <div class="main_sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="main_secondaire">
+      <header class="header">
+        <h1 id="worldname">Nom du monde{{ world.name }}</h1>
+        <div class="lesSous">
+          <img src="/os.png" alt="image" class="image_os" />: Tous les
+          sous
+        </div>
+      </header>
+
+      <div class="product">
+        <!-- <app-product *ngFor="let produit of world.products" [produit]="produit"></app-product> -->
+        <app-product [prod]="world.products[0]" class="product"></app-product>
+        <app-product [prod]="world.products[1]" class="product"></app-product>
+        <app-product [prod]="world.products[2]" class="product"></app-product>
+        <app-product [prod]="world.products[3]" class="product"></app-product>
+        <app-product [prod]="world.products[4]" class="product"></app-product>
+        <app-product [prod]="world.products[5]" class="product"></app-product>
+      </div>
+    </div>
+  </div>
+  <router-outlet />
+</main>
