@@ -8,6 +8,7 @@ export class GraphQlResolver {
   @Query()
   async getWorld(@Args('user') user: string) {
     const world = this.service.readUserWorld(user);
+    this.service.mettreAJourGains(user);
     return world;
   }
   @Mutation()
@@ -27,6 +28,12 @@ export class GraphQlResolver {
       (acc, _, i) => acc + product.cout * product.croissance ** i,
       0,
     );
+    if (world.money < cost) {
+      throw new Error(
+        `Fonds insuffisants ! Il vous manque ${cost - world.money}€.`,
+      );
+    }
+    product.quantite += quantite;
 
     // Mise à jour du prix du produit après achat
     product.cout *= product.croissance ** quantite;
@@ -60,7 +67,11 @@ export class GraphQlResolver {
     if (!manager) {
       throw new Error(`Le manager "${name}" n'existe pas.`);
     }
-
+    if (world.money < manager.seuil) {
+      throw new Error(
+        `Fonds insuffisants ! Vous avez besoin de ${manager.seuil}€.`,
+      );
+    }
     world.money -= manager.seuil;
 
     manager.unlocked = true;
@@ -147,18 +158,22 @@ export class GraphQlResolver {
   @Mutation()
   async resetWorld(@Args('user') user: string) {
     const world = this.service.readUserWorld(user);
-    const nouveauxAnges = Math.floor(world.score / 1000); // Exemple de formule
+    const nouveauxAnges = Math.max(
+      0,
+      Math.floor(150 * Math.sqrt(world.score / 1e15)) - world.totalangels,
+    );
 
     const totalAngels = world.totalangels + nouveauxAnges;
-    const activeAngels = world.activeangels + nouveauxAnges;
-
-    const newWorld = origworld;
+    const activeAngels = totalAngels;
+    const newWorld = JSON.parse(JSON.stringify(origworld));
 
     newWorld.totalangels = totalAngels;
     newWorld.activeangels = activeAngels;
+    newWorld.score = 0;
+    newWorld.money = 0;
     newWorld.lastupdate = Date.now();
 
-    this.service.saveWorld(user, world);
+    this.service.saveWorld(user, newWorld);
 
     return newWorld;
   }
