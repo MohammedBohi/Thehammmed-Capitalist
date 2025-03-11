@@ -5,9 +5,6 @@ canvas {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-canvas.background {
-  background-color: rgba(0, 255, 255, 0.2);
-}
 
 .lesdeux {
   position: relative;
@@ -17,6 +14,10 @@ canvas.background {
   top: 50%; /* Positionne le texte à 50% du conteneur */
   left: 50%; /* Positionne le texte à 50% de la largeur du conteneur */
   transform: translate(-50%, -50%); /* Ajuste la position pour centrer parfaitement */
-  font-size: 16px; /* Ajuste la taille de la police si nécessaire */
-  color: #333; /* Ajoute une couleur pour le texte */
+  font-size: 16px; 
+}
+
+.lepremier{
+  width: 300px; 
+  height: 40px;
 }

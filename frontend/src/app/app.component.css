@@ -1,13 +1,17 @@
 .main_principal {
   display: grid;
   grid-template-columns: 20% 80%;
-  align-items: center; /* Centrage horizontal des éléments */
-  /*gap: 10px; /* Espacement entre les blocs */
+  align-items: center;
+  flex-direction: column; /* Défilement vertical */
+  justify-items: center;
+  align-items: center; /* Centre verticalement */
+  width: auto; /* Ajuste la largeur */
+  overflow-y: auto; /* Active scroll vertical */
+  scroll-behavior: smooth; /* Effet scroll fluide */
 }
 
 .main_sidebar {
   width: 100%;
-  /*max-width: 250px; /* Assure que la largeur ne dépasse pas 200px */
 }
 
 .main_secondaire {
@@ -48,21 +52,37 @@
 }
 
 /* Media query pour écrans plus petits */
-/* Media query pour écrans plus petits */
 @media (max-width: 1500px) {
-  .main_principal {
-    grid-template-columns: 30% 70%;
-  }
-}
-
-@media (max-width: 1000px) {
   .main_principal {
     grid-template-columns: 40% 60%;
   }
 }
 
-@media (max-height: 1000px) {
+@media (max-width: 1000px) {
+  .main_principal {
+    grid-template-columns: 50% 50%;
+  }
   .product {
     gap: 20px;
   }
+}
+
+/* Personnalisation de la scrollbar */
+.main_principal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main_principal::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.8);
+  border-radius: 10px;
+}
+
+.main_principal::-webkit-scrollbar-thumb {
+  background: cyan;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+.main_principal::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.6);
 }

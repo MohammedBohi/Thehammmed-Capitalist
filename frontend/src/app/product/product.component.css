@@ -6,7 +6,6 @@
   justify-content: center;
   gap: 30px;
   max-height: 95%;
-  margin: 20px 50px 0px 0px;
   padding: 20px;
   border-radius: 15px;
   background: rgba(20, 20, 20, 0.4);
@@ -34,18 +33,24 @@ img:hover {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  margin-top: 50px;
   color: white;
   text-shadow: 0 0 5px cyan;
 }
 
-/* Boutons */
-.boutons {
-  display: flex;
-  flex-direction: row;
+.train{
+  width: 300px;
+}
+
+.infos_product {
+  display: grid;
+  grid-template-columns: 55% 40%;
   justify-content: space-between;
   width: 100%;
   gap: 10px;
+}
+
+.temps{
+  height: 40px;
 }
 
 button {
@@ -55,7 +60,6 @@ button {
   border-radius: 12px;
   cursor: pointer;
   height: 45px;
-  font-size: 16px;
   font-weight: bold;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
@@ -74,7 +78,7 @@ button:focus {
 }
 
 /* les textes */
-.temps, .train {
+.temps, .train, .palier {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,12 +87,11 @@ button:focus {
   border: 1px solid cyan;
   border-radius: 12px;
   height: 40px;
-  padding: 0 15px;
   font-weight: bold;
   transition: all 0.3s ease;
 }
 
-.temps:hover, .train:hover {
+.temps:hover, .train:hover, .palier:hover {
   background: rgba(0, 255, 255, 0.2);
   box-shadow: 0 0 10px cyan;
 }

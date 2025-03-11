@@ -27,7 +27,7 @@ export enum Orientation {
 export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
   isPopupOpen = true;
   @Input() frontcolor = '';
-  backcolor = 'rgba(124, 124, 124, 0.2)';
+  backcolor = 'rgba(34, 34, 34, 0.1)';
   @Input() initialValue = 0; // valeur initiale de la barre
   @Input() vitesse = 60000; // durée totale en ms (ex. 60000 ms = 1 minute)
   @Input() orientation: Orientation = Orientation.horizontal;
@@ -80,7 +80,7 @@ export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   restartAnim() {
-    if (this.vitesse > 0 && this.run && this.canvasRef) {
+    if (this.vitesse > 0 && this.canvasRef) {
       // Si une animation précédente existe, on l'annule et on garde l'état de la progression.
       if (this.animationRef.value !== 0) {
         cancelAnimationFrame(this.animationRef.value);

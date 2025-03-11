@@ -12,16 +12,15 @@ import { TimerComponent } from '../timer/timer.component';
 })
 export class ProductComponent {
   product!: Product;
-
-  //Le setter est appelé chaque fois que la valeur de l'input est modifiée,
+  Orientation = Orientation;
+  
+  //Le setter appelé quand valeur de l'input est modifiée,
   //donc quand le composant parent (AppComponent) passe un nouveau Product au composant ProductComponent
   @Input()
   set prod(value: Product) {
     this.product = value;
     console.log('Produit mis à jour :', this.product);
-  }
-  // Déclaration de l'orientation
-  Orientation = Orientation;
+    }
 
   incrementCount() {
     this.product.quantite++;

@@ -17,16 +17,17 @@ export class SidebarComponent implements OnInit {
 
   constructor(private service: WebserviceService) {}
 
-  // Cette fonction inverse la valeur de isPopupOpen en appelant le service
-  changeValue() {
-    this.service.updatePopupState(!this.isPopupOpen); // Inverse la valeur locale et l'envoie au service
-  }
-
   ngOnInit() {
     this.service.popupState.subscribe(value => {
       this.isPopupOpen = value; // Met à jour isPopupOpen avec la valeur du service
     });
   }
+
+  // Cette fonction inverse la valeur de isPopupOpen en appelant le service
+  changeValue() {
+    this.service.updatePopupState(!this.isPopupOpen); // Inverse la valeur locale et l'envoie au service
+  }
+
 
   openPopup(page: string) {
     this.activePage = page;

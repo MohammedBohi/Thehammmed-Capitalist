@@ -16,8 +16,16 @@
   border-top-right-radius: 20px; /* Arrondi en haut à droite */
   border-bottom-right-radius: 20px; /* Arrondi en bas à droite */
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4); /* Ombre */
+
+  /*scroll*/
+  overflow: auto; /* Ou scroll */
+  scrollbar-width: none; /* Pour Firefox */
+  -ms-overflow-style: none; /* Pour Internet Explorer et Edge */
 }
 
+.sidebar::-webkit-scrollbar {
+  display: none; /* Cache la barre de défilement sur Chrome, Safari et Edge */
+}
 
 .icon {
   width: 80%;
