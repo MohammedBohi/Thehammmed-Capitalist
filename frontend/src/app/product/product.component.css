@@ -2,11 +2,11 @@
 .main_product {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   gap: 30px;
   max-height: 95%;
-  padding: 20px;
+  padding: 12px;
   border-radius: 15px;
   background: rgba(20, 20, 20, 0.4);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
@@ -59,7 +59,7 @@ button {
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  height: 45px;
+  height: 40px;
   font-weight: bold;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
@@ -86,7 +86,7 @@ button:focus {
   color: cyan;
   border: 1px solid cyan;
   border-radius: 12px;
-  height: 40px;
+  height: 35px;
   font-weight: bold;
   transition: all 0.3s ease;
 }

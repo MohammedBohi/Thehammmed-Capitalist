@@ -11,7 +11,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  gap: 60px;
+  gap: 40px;
   /*border-right: 8px solid #42403f;*/
   border-top-right-radius: 20px; /* Arrondi en haut à droite */
   border-bottom-right-radius: 20px; /* Arrondi en bas à droite */
@@ -99,6 +99,6 @@
 
 @media (max-height: 1000px) {
   .sidebar {
-    gap: 40px;
+    gap: 10px;
   }
 }
