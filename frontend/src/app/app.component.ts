@@ -14,12 +14,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   styleUrls: ['./app.component.css'],
   //styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'frontend';
   world: World = new World();
-  user: string = 'User';
-
-  constructor(private service: WebserviceService) {
+  user: string = 'DinoMaster';
+  constructor(private service: WebserviceService) {}
     //   try {
     //     service.getWorld(this.user).then((world) => {
     //       this.world = world.data.getWorld;
@@ -27,16 +26,18 @@ export class AppComponent {
     //   } catch (error) {
     //     console.error('Erreur lors du chargement du monde :', error);
     //   }
-
-    this.service
-      .getWorld(this.user)
-      .then((world) => {
-        if (world && world.data && world.data.getWorld) {
-          this.world = World.fromJSON(world.data.getWorld);
+    ngOnInit() {
+      this.loadWorld();
+    }
+  
+    loadWorld() {
+      this.service.getWorld(this.user).then(response => {
+        if (response?.data?.getWorld) {
+          this.world = World.fromJSON(response.data.getWorld);
+          console.log(' Monde chargé:', this.world);
         }
-      })
-      .catch((error) => {
-        console.error('Erreur lors du chargement du monde :', error);
+      }).catch(error => {
+        console.error('Erreur lors du chargement du monde:', error);
       });
+    }
   }
-}

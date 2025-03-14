@@ -102,7 +102,7 @@ export const origworld = {
       name: 'Tyrannosaurus Rex Pen',
       logo: 'icones/t_rex.jpg',
       cout: 1000,
-      croissance: 1.10,
+      croissance: 1.1,
       revenu: 1000,
       vitesse: 10000,
       quantite: 0,

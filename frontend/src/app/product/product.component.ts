@@ -3,6 +3,8 @@ import { Product } from '../models/product.model';
 import {ProgressbarComponent} from '../progressbar/progressbar.component'
 import { Orientation } from '../progressbar/progressbar.component';
 import { TimerComponent } from '../timer/timer.component';
+import { WebserviceService } from '../webservice.service';
+
 
 @Component({
   selector: 'app-product',
@@ -11,7 +13,7 @@ import { TimerComponent } from '../timer/timer.component';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
-  product!: Product;
+  @Input() prod!: Product; 
 
   //Le setter est appelé chaque fois que la valeur de l'input est modifiée,
   //donc quand le composant parent (AppComponent) passe un nouveau Product au composant ProductComponent
