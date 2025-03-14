@@ -1,10 +1,10 @@
-.main_page_managers{
+.main_page_ange{
     display: flex;
     flex-direction: column;
     gap: 50px;
 }
 
-.titre_managers {
+.titre_ange {
     font-size: 50px; /* taille du texte */
     font-weight: bold;
     font-family: "Orbitron", sans-serif;
@@ -16,7 +16,7 @@
     margin-top: 30px;
   }
   
-  .main_managers {
+  .main_ange {
     display: flex;
     flex-direction: column; /* Défilement vertical */
     justify-items: center; /* Centre horizontalement */
@@ -34,26 +34,26 @@
 }
 
 /* Personnalisation de la scrollbar */
-.main_managers::-webkit-scrollbar {
+.main_ange::-webkit-scrollbar {
     width: 8px;
 }
 
-.main_managers::-webkit-scrollbar-track {
+.main_ange::-webkit-scrollbar-track {
     background: rgba(20, 20, 20, 0.8);
     border-radius: 10px;
 }
 
-.main_managers::-webkit-scrollbar-thumb {
+.main_ange::-webkit-scrollbar-thumb {
     background: cyan;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
 }
 
-.main_managers::-webkit-scrollbar-thumb:hover {
+.main_ange::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 255, 255, 0.6);
 }
 
-.un_manager {
+.un_ange {
     height: 100%;
     width: 100%;
     border-radius: 15px;

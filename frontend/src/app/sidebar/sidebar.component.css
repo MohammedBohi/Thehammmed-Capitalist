@@ -11,13 +11,21 @@
   position: fixed;
   left: 0;
   top: 0;
-  gap: 60px;
+  gap: 40px;
   /*border-right: 8px solid #42403f;*/
   border-top-right-radius: 20px; /* Arrondi en haut à droite */
   border-bottom-right-radius: 20px; /* Arrondi en bas à droite */
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4); /* Ombre */
+
+  /*scroll*/
+  overflow: auto; /* Ou scroll */
+  scrollbar-width: none; /* Pour Firefox */
+  -ms-overflow-style: none; /* Pour Internet Explorer et Edge */
 }
 
+.sidebar::-webkit-scrollbar {
+  display: none; /* Cache la barre de défilement sur Chrome, Safari et Edge */
+}
 
 .icon {
   width: 80%;
@@ -91,6 +99,6 @@
 
 @media (max-height: 1000px) {
   .sidebar {
-    gap: 40px;
+    gap: 10px;
   }
 }

@@ -1,13 +1,28 @@
+.worldname {
+  font-size: 50px; /* taille du texte */
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase; /* Met en majuscules */
+  text-align: center;
+  color: #00eaff;
+  text-shadow: 0px 0px 5px #fafafa, 0px 0px 20px #000f20;
+  letter-spacing: 2px; /* Espacement ecriture */
+}
+
 .main_principal {
   display: grid;
   grid-template-columns: 20% 80%;
-  align-items: center; /* Centrage horizontal des éléments */
-  /*gap: 10px; /* Espacement entre les blocs */
+  align-items: center;
+  flex-direction: column; /* Défilement vertical */
+  justify-items: center;
+  /* align-items: center; Centre verticalement */
+  /* width: auto; Ajuste la largeur */
+  /* overflow-y: auto; Active scroll vertical */
+  /* scroll-behavior: smooth; Effet scroll fluide */
 }
 
 .main_sidebar {
   width: 100%;
-  /*max-width: 250px; /* Assure que la largeur ne dépasse pas 200px */
 }
 
 .main_secondaire {
@@ -20,6 +35,7 @@
 .header {
   display: grid;
   grid-template-columns: 30% 25% 25% 20%;
+  gap: 100px;
 }
 
 .lesSous{
@@ -39,30 +55,46 @@
 }
 
 .product {
+  margin-top: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%; /*largeur*/
   height: 100%; /*hauteur*/
-  gap: 60px; /* Espace entre les éléments */
+  gap: 70px;
+  row-gap: 100px;
   box-sizing: border-box; /* Inclut les bordures et le padding dans la taille */
 }
 
-/* Media query pour écrans plus petits */
-/* Media query pour écrans plus petits */
-@media (max-width: 1500px) {
-  .main_principal {
-    grid-template-columns: 30% 70%;
-  }
-}
-
+/* Media query pour écrans plus petits  */
 @media (max-width: 1000px) {
   .main_principal {
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 50% 50%;
+    gap: 20px;
   }
 }
 
 @media (max-height: 1000px) {
   .product {
-    gap: 20px;
+    row-gap: 40px;
   }
 }
+
+/* Personnalisation de la scrollbar
+.main_principal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main_principal::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.8);
+  border-radius: 10px;
+}
+
+.main_principal::-webkit-scrollbar-thumb {
+  background: cyan;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+.main_principal::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.6);
+} */

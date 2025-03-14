@@ -10,6 +10,7 @@ export class UnmanagerComponent {
   @Input() imageManager = '';
   @Input() nomManager = 'Dora';
   @Input() bonusManager = 'Bonus';
-  @Input() prixManager = 'Il est trop cher pour toi'
+  @Input() prixManager = 'Il est trop cher pour toi';
+  @Input() texte = "acheter";
 
 }
