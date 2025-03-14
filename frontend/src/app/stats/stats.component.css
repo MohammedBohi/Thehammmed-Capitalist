@@ -9,3 +9,76 @@
     letter-spacing: 2px; /* Espacement ecriture */
     margin-top: 30px;
   }
+
+.ilsDansent{
+  height: 78%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin: 40px auto 0 auto;
+  border-radius: 25px;
+  box-shadow:0 10px 20px rgba(0, 59, 77, 0.5);
+}
+
+.hg {
+  height: 250px;
+  width: auto;
+  object-fit: contain;/*pour que l'image soit pas déformée*/
+  position: absolute; /* Positionnement absolu */
+  top: 10px;
+  left: 140px;
+}
+
+.mhg {
+  height: 180px;
+  width: auto;
+  object-fit: contain;/*pour que l'image soit pas déformée*/
+  position: absolute; /* Positionnement absolu */
+  top: 200px;
+  left: 40px;
+}
+
+.hd {
+  height: 300px;
+  width: auto;
+  object-fit: contain;/*pour que l'image soit pas déformée*/
+  position: absolute; /* Positionnement absolu */
+  top: 10px;
+  right: 50px;
+}
+
+.bd {
+  height: 250px;
+  width: auto;
+  object-fit: contain;/*pour que l'image soit pas déformée*/
+  position: absolute; /* Positionnement absolu */
+  bottom: 0px;
+  right: 10px;
+}
+
+.mbd {
+  height: 200px;
+  width: auto;
+  object-fit: contain;/*pour que l'image soit pas déformée*/
+  position: absolute; /* Positionnement absolu */
+  bottom: 240px;
+  right: 0px;
+}
+
+.mbmd {
+  height: 150px;
+  width: auto;
+  object-fit: contain;/*pour que l'image soit pas déformée*/
+  position: absolute; /* Positionnement absolu */
+  bottom: 220px;
+  right: 160px;
+}
+
+.bg {
+  height: 370px;
+  width: auto;
+  object-fit: contain;/*pour que l'image soit pas déformée*/
+  position: absolute; /* Positionnement absolu */
+  bottom: 10px;
+  left: 0px;
+}
