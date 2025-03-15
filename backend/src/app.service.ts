@@ -27,6 +27,8 @@ export class AppService {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
+    this.mettreAJourGains(user); // Mise à jour des gains avant la sauvegarde
+
     fs.writeFile(
       path.join(dir, user + '-world.json'),
       JSON.stringify(world),
@@ -74,8 +76,11 @@ export class AppService {
             world.score +=
               cyclesComplets * product.revenu * product.quantite * bonusAnges;
             product.timeleft =
-              product.vitesse - (tempsRestantApresCycle % product.vitesse);
+              tempsRestantApresCycle % product.vitesse === 0
+                ? 0 // Aucun temps restant
+                : product.vitesse - (tempsRestantApresCycle % product.vitesse);
           } else if (product.timeleft > tempsEcoule) {
+            // La production est toujours en cours, on met à jour `timeleft`
             product.timeleft -= tempsEcoule;
           } else {
             // Aucun cycle en cours, on calcule les cycles complets directement
@@ -85,7 +90,9 @@ export class AppService {
             world.score +=
               cyclesComplets * product.revenu * product.quantite * bonusAnges;
             product.timeleft =
-              product.vitesse - (tempsEcoule % product.vitesse);
+              tempsEcoule % product.vitesse === 0
+                ? 0
+                : product.vitesse - (tempsEcoule % product.vitesse);
           }
         }
       }

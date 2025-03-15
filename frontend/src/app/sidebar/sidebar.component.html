@@ -1,17 +1,22 @@
 <div class="sidebar">
-  <img src="/logo7.png" alt="Logo du monde" (click)="openPopup('stats')" class="world-logo" />
-  <img src="unlocks5.png" (click)="openPopup('unlocks')" class="icon"/>
-  <img src="products.png" (click)="openPopup('upgradeproducts')" class="icon"/>
-  <img src="meteorites.png" (click)="openPopup('upgradeangels')" class="icon"/>
-  <img src="managers.png" (click)="openPopup('managers')" class="icon"/>
-  <img src="investors.png" (click)="openPopup('investors')" class="icon"/>
+  <img
+    src="/logo7.png"
+    alt="Logo du monde"
+    (click)="openPopup('stats')"
+    class="world-logo"
+  />
+  <img src="unlocks5.png" (click)="openPopup('unlocks')" class="icon" />
+  <img src="products.png" (click)="openPopup('upgradeproducts')" class="icon" />
+  <img src="meteorites.png" (click)="openPopup('upgradeangels')" class="icon" />
+  <img src="managers.png" (click)="openPopup('managers')" class="icon" />
+  <img src="investors.png" (click)="openPopup('investors')" class="icon" />
 </div>
 
 <!-- Popup -->
 <div class="popup" *ngIf="isPopupOpen" (click)="closePopup()">
   <div class="popup-content" (click)="$event.stopPropagation()">
     <button class="close-btn" (click)="closePopup()">X</button>
-    
+
     <ng-container *ngIf="activePage === 'stats'">
       <app-stats></app-stats>
     </ng-container>
@@ -37,5 +42,3 @@
     </ng-container>
   </div>
 </div>
-
-

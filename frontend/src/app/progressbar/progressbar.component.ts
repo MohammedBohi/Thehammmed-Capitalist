@@ -42,7 +42,10 @@ export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
   // pour savoir quand l'animation a commencé.
   animationStartTime: number | undefined;
 
-  constructor(private ngZone: NgZone, private service: WebserviceService) {}
+  constructor(
+    private ngZone: NgZone,
+    private service: WebserviceService,
+  ) {}
 
   ngOnInit() {
     // Abonnement aux changements de la popup
@@ -96,7 +99,7 @@ export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
           this.animationRef,
           this.auto,
           this.frontcolor,
-          this.backcolor
+          this.backcolor,
         );
       });
     }
@@ -121,7 +124,7 @@ export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
     animationRef: { value: number },
     auto: boolean,
     frontcolor: string,
-    backcolor: string
+    backcolor: string,
   ) {
     const ctx = canvasRef.nativeElement.getContext('2d');
     if (!ctx) return;

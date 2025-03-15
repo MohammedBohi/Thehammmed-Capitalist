@@ -16,6 +16,9 @@ export class WebserviceService {
 
   constructor() {}
 
+  public updatePopupState(state: boolean) {
+    this.ispopupOpen.next(state); // Met à jour la valeur de l'observable
+  }
 
   getWorld(user: string) {
     const GET_WORLD = gql`
@@ -24,10 +27,19 @@ export class WebserviceService {
           name
           money
           products {
-            id name cout revenu vitesse quantite logo
+            id
+            name
+            cout
+            revenu
+            vitesse
+            quantite
+            logo
           }
           managers {
-            name seuil idcible unlocked
+            name
+            seuil
+            idcible
+            unlocked
           }
         }
       }
@@ -39,7 +51,9 @@ export class WebserviceService {
     const ACHETER_PRODUIT = gql`
       mutation acheterQtProduit($id: Int!, $quantite: Int!) {
         acheterQtProduit(id: $id, quantite: $quantite) {
-          id quantite cout
+          id
+          quantite
+          cout
         }
       }
     `;
@@ -50,7 +64,8 @@ export class WebserviceService {
     const LANCER_PRODUCTION = gql`
       mutation lancerProductionProduit($id: Int!) {
         lancerProductionProduit(id: $id) {
-          id timeleft
+          id
+          timeleft
         }
       }
     `;
@@ -61,7 +76,8 @@ export class WebserviceService {
     const ENGAGER_MANAGER = gql`
       mutation engagerManager($name: String!) {
         engagerManager(name: $name) {
-          name unlocked
+          name
+          unlocked
         }
       }
     `;

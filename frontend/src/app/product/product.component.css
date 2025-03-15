@@ -19,7 +19,9 @@
   height: auto;
   max-height: 250px;
   border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 img:hover {
@@ -37,7 +39,7 @@ img:hover {
   text-shadow: 0 0 5px cyan;
 }
 
-.train{
+.train {
   width: 300px;
 }
 
@@ -49,7 +51,7 @@ img:hover {
   gap: 10px;
 }
 
-.temps{
+.temps {
   height: 40px;
 }
 
@@ -78,7 +80,9 @@ button:focus {
 }
 
 /* les textes */
-.temps, .train, .palier {
+.temps,
+.train,
+.palier {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,7 +95,9 @@ button:focus {
   transition: all 0.3s ease;
 }
 
-.temps:hover, .train:hover, .palier:hover {
+.temps:hover,
+.train:hover,
+.palier:hover {
   background: rgba(0, 255, 255, 0.2);
   box-shadow: 0 0 10px cyan;
 }

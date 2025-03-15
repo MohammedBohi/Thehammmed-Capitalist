@@ -2,22 +2,26 @@ canvas {
   border-radius: 10px;
   border: 2px solid cyan;
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
-
 
 .lesdeux {
   position: relative;
- }
- .lesecond {
+}
+.lesecond {
   position: absolute;
   top: 50%; /* Positionne le texte à 50% du conteneur */
   left: 50%; /* Positionne le texte à 50% de la largeur du conteneur */
-  transform: translate(-50%, -50%); /* Ajuste la position pour centrer parfaitement */
-  font-size: 16px; 
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Ajuste la position pour centrer parfaitement */
+  font-size: 16px;
 }
 
-.lepremier{
-  width: 300px; 
+.lepremier {
+  width: 300px;
   height: 40px;
 }

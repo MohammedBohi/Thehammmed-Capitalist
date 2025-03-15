@@ -5,8 +5,6 @@ import { UnmanagerComponent } from '../unmanager/unmanager.component';
   selector: 'app-upgradeproducts',
   imports: [UnmanagerComponent],
   templateUrl: './upgradeproducts.component.html',
-  styleUrl: './upgradeproducts.component.css'
+  styleUrl: './upgradeproducts.component.css',
 })
-export class UpgradeproductsComponent {
-
-}
+export class UpgradeproductsComponent {}

@@ -5,15 +5,22 @@ import { WebserviceService } from '../webservice.service';
 import { InvestorsComponent } from '../investors/investors.component';
 import { ManagersComponent } from '../managers/managers.component';
 import { StatsComponent } from '../stats/stats.component';
-import {UpgradeproductsComponent} from '../upgradeproducts/upgradeproducts.component'
+import { UpgradeproductsComponent } from '../upgradeproducts/upgradeproducts.component';
 import { UpgradeangelsComponent } from '../upgradeangels/upgradeangels.component';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, UnlocksComponent, InvestorsComponent, ManagersComponent, 
-            StatsComponent, UpgradeproductsComponent, UpgradeangelsComponent],
+  imports: [
+    CommonModule,
+    UnlocksComponent,
+    InvestorsComponent,
+    ManagersComponent,
+    StatsComponent,
+    UpgradeproductsComponent,
+    UpgradeangelsComponent,
+  ],
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
   isPopupOpen = false;
@@ -22,7 +29,7 @@ export class SidebarComponent implements OnInit {
   constructor(private service: WebserviceService) {}
 
   ngOnInit() {
-    this.service.popupState.subscribe(value => {
+    this.service.popupState.subscribe((value) => {
       this.isPopupOpen = value; // Met à jour isPopupOpen avec la valeur du service
     });
   }
@@ -31,7 +38,6 @@ export class SidebarComponent implements OnInit {
   changeValue() {
     this.service.updatePopupState(!this.isPopupOpen); // Inverse la valeur locale et l'envoie au service
   }
-
 
   openPopup(page: string) {
     this.activePage = page;

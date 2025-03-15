@@ -8,9 +8,8 @@ describe('UnmanagerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UnmanagerComponent]
-    })
-    .compileComponents();
+      imports: [UnmanagerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UnmanagerComponent);
     component = fixture.componentInstance;

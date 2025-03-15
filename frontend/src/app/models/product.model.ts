@@ -1,4 +1,4 @@
-import { Palier } from './palier.model';  // Import de Palier
+import { Palier } from './palier.model'; // Import de Palier
 
 export class Product {
   id!: number;

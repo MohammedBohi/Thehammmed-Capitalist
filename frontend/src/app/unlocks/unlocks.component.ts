@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-unlocks',
   imports: [],
   templateUrl: './unlocks.component.html',
-  styleUrl: './unlocks.component.css'
+  styleUrl: './unlocks.component.css',
 })
-export class UnlocksComponent {
-
-}
+export class UnlocksComponent {}

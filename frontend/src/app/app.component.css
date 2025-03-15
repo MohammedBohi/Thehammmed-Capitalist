@@ -37,7 +37,9 @@
   text-transform: uppercase; /* Met en majuscules */
   text-align: center;
   color: #84e6ff;
-  text-shadow: 0px 0px 5px #00f7ff, 0px 0px 10px #000f20;
+  text-shadow:
+    0px 0px 5px #00f7ff,
+    0px 0px 10px #000f20;
   letter-spacing: 2px; /* Espacement ecriture */
 }
 
@@ -48,7 +50,9 @@
   text-transform: uppercase; /* Met en majuscules */
   text-align: center;
   color: #4ef0ff;
-  text-shadow: 0px 0px 5px #fafafa, 0px 0px 20px #000f20;
+  text-shadow:
+    0px 0px 5px #fafafa,
+    0px 0px 20px #000f20;
   letter-spacing: 2px; /* Espacement ecriture */
 }
 
