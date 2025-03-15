@@ -51,7 +51,7 @@
     box-shadow: 0 0 20px rgba(0, 255, 255, 1);
   }
   
-  /* les textes */
+  /* texte */
   .nom_manager{
     font-size: 33px; /* taille du texte */
     font-weight: bold;
