@@ -1,33 +1,50 @@
+<ng-container *ngIf="prod">
 <div class="main_product">
   <img
-    src="/blanc.png"
-    alt="image"
-    class="image_produit"
-    (click)="incrementCount()"
-  />
-  <!-- <img [src]="product?.logo" alt="{{ product?.name }}" /> -->
-  <!-- #00f1ff -->
-  <div class="main_secondaire">
-    <button class="train">
-      <div>Entrainer:</div>
-      <div>Le prix héhéhé</div>
-    </button>
-    <app-progressbar
+    [src]="productImage"
+    alt="{{ prod.name }}"
+      class="image_produit"
+      (click)="entrainerDino()"
+    />
+
+
+    <!-- <img [src]="product?.logo" alt="{{ product?.name }}" /> -->
+    <!-- #00f1ff -->
+    <div class="main_secondaire">
+      <h3 class="nom_dino">{{ prod.name }}</h3>
+
+      <button class="train" (click)="acheterDino()">
+        <div>Acheter</div>
+        <div>{{ prod.cout | number: '1.0-0' }} $</div>
+      </button>
+      <div class="revenu">
+        + {{ prod.revenu | number: '1.0-0' }} $ / production
+      </div>
+
+      <app-progressbar
+      *ngIf="prod.timeleft > 0"
       [run]="true"
       [auto]="true"
       frontcolor="#368484"
       [orientation]="Orientation.horizontal"
-      [vitesse]="10000"
+      [vitesse]="prod.vitesse"
       [initialValue]="0"
-    >
-    </app-progressbar>
-    <div class="infos_product">
-      <div class="palier">
-        <div>2</div>
-        <div>/</div>
-        <div>30</div>
-      </div>
-      <div class="temps"><app-timer [duration]="10000"></app-timer></div>
+      (productionComplete)="onProductionComplete()"
+
+      >
+      </app-progressbar>
+      <div class="infos_product">
+        <div class="palier">
+          <div>{{ prod.quantite }}</div>
+          <div>/</div>
+          <div>30</div>
+        </div>
+        <div class="temps">
+          <app-timer *ngIf="prod.timeleft > 0" [duration]="prod.timeleft"></app-timer>
+        </div>
     </div>
   </div>
 </div>
+
+</ng-container>
+

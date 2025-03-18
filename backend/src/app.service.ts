@@ -18,24 +18,19 @@ export class AppService {
       return JSON.parse(data.toString());
     } catch (e: unknown) {
       console.log((e as Error).message);
+      this.saveWorld(user, origworld);
       return origworld;
     }
   }
 
   saveWorld(user: string, world: World) {
-    const dir = path.join(process.cwd(), 'userworlds');
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    this.mettreAJourGains(user); // Mise à jour des gains avant la sauvegarde
-
     fs.writeFile(
-      path.join(dir, user + '-world.json'),
+      path.join(process.cwd(), 'userworlds/', user + '-world.json'),
       JSON.stringify(world),
       (err) => {
         if (err) {
           console.error(err);
-          throw new Error('Erreur d’écriture du monde côté serveur');
+          throw new Error(`Erreur d'écriture du monde coté serveur`);
         }
       },
     );

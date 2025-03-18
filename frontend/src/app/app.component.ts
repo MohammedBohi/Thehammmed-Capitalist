@@ -6,10 +6,14 @@ import { Palier } from './models/palier.model';
 import { WebserviceService } from './webservice.service';
 import { ProductComponent } from './product/product.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { CommonModule } from '@angular/common'; 
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ProductComponent, SidebarComponent],
+  standalone: true, 
+
+  imports: [CommonModule, RouterOutlet, ProductComponent, SidebarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   //styleUrl: './app.component.css',
@@ -18,7 +22,7 @@ export class AppComponent implements OnInit {
   title = 'frontend';
   world: World = new World();
   user: string = 'DinoMaster';
-  constructor(private service: WebserviceService) {}
+  constructor(private webService: WebserviceService) {}
   //   try {
   //     service.getWorld(this.user).then((world) => {
   //       this.world = world.data.getWorld;
@@ -27,20 +31,36 @@ export class AppComponent implements OnInit {
   //     console.error('Erreur lors du chargement du monde :', error);
   //   }
   ngOnInit() {
-    this.loadWorld();
+    this.webService.world$.subscribe((world: World) => {
+      if (world) {
+        console.log("🌍 World reçu dans app.component.ts :", world);
+  
+        // 🟢 Forçage de nouvelle référence
+        this.world = {
+          ...world,
+          products: [...world.products] // 👈 on clone le tableau pour forcer Angular à détecter le changement
+        };
+      }
+    });
+  
+    this.webService.getWorld(this.user);
   }
+  handleWorldChanged() {
+    this.world = { ...this.world, products: [...this.world.products] };
+  }
+  
+  
+    logTemplate() {
+      console.log("🟢 Template détecte le world :", this.world);
+      return '';
+    }
+    
 
-  loadWorld() {
-    this.service
-      .getWorld(this.user)
-      .then((response) => {
-        if (response?.data?.getWorld) {
-          this.world = World.fromJSON(response.data.getWorld);
-          console.log(' Monde chargé:', this.world);
-        }
-      })
-      .catch((error) => {
-        console.error('Erreur lors du chargement du monde:', error);
-      });
+  
+  
   }
-}
+  
+
+  
+
+

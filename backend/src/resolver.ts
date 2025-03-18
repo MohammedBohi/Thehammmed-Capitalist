@@ -7,9 +7,8 @@ export class GraphQlResolver {
   constructor(private service: AppService) {}
   @Query()
   async getWorld(@Args('user') user: string) {
-    const world = this.service.readUserWorld(user);
     this.service.mettreAJourGains(user);
-    return world;
+    return this.service.readUserWorld(user);
   }
   @Mutation()
   async acheterQtProduit(
@@ -17,6 +16,7 @@ export class GraphQlResolver {
     @Args('id') id: number,
     @Args('quantite') quantite: number,
   ) {
+    this.service.mettreAJourGains(user);
     const world = this.service.readUserWorld(user);
 
     // Récupération du produit
@@ -37,9 +37,8 @@ export class GraphQlResolver {
 
     // Mise à jour du prix du produit après achat
     product.cout *= product.croissance ** quantite;
-    this.service.saveWorld(user, world);
     world.money -= cost;
-
+    this.service.saveWorld(user, world);
     return product;
   }
   @Mutation()
@@ -47,6 +46,7 @@ export class GraphQlResolver {
     @Args('user') user: string,
     @Args('id') id: number,
   ) {
+    this.service.mettreAJourGains(user);
     const world = this.service.readUserWorld(user);
     // Récupération du produit
     const product = world.products.find((p) => p.id === id);
@@ -61,7 +61,7 @@ export class GraphQlResolver {
   }
   @Mutation()
   async engagerManager(@Args('user') user: string, @Args('name') name: string) {
-    // Lancement du monde
+    this.service.mettreAJourGains(user);
     const world = this.service.readUserWorld(user);
     const manager = world.managers.find((m) => m.name === name);
     if (!manager) {
@@ -90,6 +90,7 @@ export class GraphQlResolver {
     @Args('user') user: string,
     @Args('name') name: string,
   ) {
+    this.service.mettreAJourGains(user);
     const world = this.service.readUserWorld(user);
 
     const upgrade = world.upgrades.find((u) => u.name === name);
@@ -116,13 +117,14 @@ export class GraphQlResolver {
 
     this.service.saveWorld(user, world);
 
-    return upgrade;
+     return upgrade;
   }
   @Mutation()
   async acheterAngelUpgrade(
     @Args('user') user: string,
     @Args('name') name: string,
   ) {
+    this.service.mettreAJourGains(user);
     const world = this.service.readUserWorld(user);
 
     const angelUpgrade = world.angelupgrades.find((u) => u.name === name);
@@ -157,6 +159,7 @@ export class GraphQlResolver {
   }
   @Mutation()
   async resetWorld(@Args('user') user: string) {
+    this.service.mettreAJourGains(user);
     const world = this.service.readUserWorld(user);
     const nouveauxAnges = Math.max(
       0,
@@ -169,6 +172,7 @@ export class GraphQlResolver {
 
     newWorld.totalangels = totalAngels;
     newWorld.activeangels = activeAngels;
+    newWorld.angelbonus = world.angelbonus;
     newWorld.score = 0;
     newWorld.money = 0;
     newWorld.lastupdate = Date.now();

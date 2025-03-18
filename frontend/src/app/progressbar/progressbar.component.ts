@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WebserviceService } from '../webservice.service';
+import { Output, EventEmitter } from '@angular/core';
 
 export enum Orientation {
   horizontal = 'horizontal',
@@ -25,7 +26,6 @@ export enum Orientation {
   template: '<canvas style="height: 100%; width: 100%" #canvasRef></canvas>',
 })
 export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
-  isPopupOpen = true;
   @Input() frontcolor = '';
   backcolor = 'rgba(34, 34, 34, 0.1)';
   @Input() initialValue = 0; // valeur initiale de la barre
@@ -33,6 +33,8 @@ export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
   @Input() orientation: Orientation = Orientation.horizontal;
   @Input() auto = true;
   @Input() run = true;
+  @Output() productionComplete = new EventEmitter<void>();
+
 
   @ViewChild('canvasRef') canvasRef: ElementRef | undefined;
   animationRef = { value: 0 };
@@ -48,16 +50,9 @@ export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // Abonnement aux changements de la popup
-    this.service.popupState.subscribe((value) => {
-      this.isPopupOpen = value;
-      if (!this.isPopupOpen) {
-        // Quand la popup se ferme, on reprend l'animation
-        setTimeout(() => {
-          this.restartAnim();
-        }, 200);
-      }
-    });
+    if (this.run) {
+      this.restartAnim();
+    }
   }
 
   ngAfterViewInit() {
@@ -74,13 +69,11 @@ export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
       changes.hasOwnProperty('run')
     ) {
       // Redémarre l'animation si une propriété change, sauf si la popup est ouverte
-      if (!this.isPopupOpen) {
         setTimeout(() => {
           this.restartAnim();
         }, 200);
       }
     }
-  }
 
   restartAnim() {
     if (this.vitesse > 0 && this.canvasRef) {
@@ -165,13 +158,16 @@ export class ProgressbarComponent implements OnInit, OnChanges, OnDestroy {
       // Si la barre est encore en progression, on continue l'animation
       if (widthRef < reflength) {
         animationRef.value = requestAnimationFrame(draw);
-      } else {
-        this.animationStartTime = undefined; // Redémarre l'animation à partir de zéro
-        animationRef.value = requestAnimationFrame(draw);
-      }
-    };
+    } else {
+        cancelAnimationFrame(animationRef.value);
+        this.ngZone.run(() => {
+            this.productionComplete.emit();
+        });
+    }
+    
 
     // Lancer l'animation
     animationRef.value = requestAnimationFrame(draw);
   }
+}
 }

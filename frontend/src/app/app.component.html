@@ -1,27 +1,29 @@
-<main class="classe">
-  <div class="main_principal" #mainPrincipal>
-    <div class="main_sidebar">
-      <app-sidebar></app-sidebar>
-    </div>
+    <div class="background">
 
-    <div class="main_secondaire">
-      <header class="header">
-        <div class="lesSous">
-          <img src="/os.png" alt="image" class="image_os" />: Tous les sous
+    <main class="classe">
+      <div class="main_principal" #mainPrincipal>
+        <div class="main_sidebar">
+          <app-sidebar></app-sidebar>
         </div>
-        <h1 class="worldname">Nom du monde{{ world.name }}</h1>
-      </header>
 
-      <div class="product">
-        <!-- <app-product *ngFor="let produit of world.products" [produit]="produit"></app-product> -->
-        <app-product [prod]="world.products[0]" class="product"></app-product>
-        <app-product [prod]="world.products[1]" class="product"></app-product>
-        <app-product [prod]="world.products[2]" class="product"></app-product>
-        <app-product [prod]="world.products[3]" class="product"></app-product>
-        <app-product [prod]="world.products[4]" class="product"></app-product>
-        <app-product [prod]="world.products[5]" class="product"></app-product>
+        <div class="main_secondaire">
+          <header class="header">
+            <div class="lesSous">
+              <img src="os.png" alt="image" class="image_os" />
+              : {{ world.money | number:'1.0-0' }} $
+            </div>          
+            <h1 class="worldname">Nom du monde{{ world.name }}</h1>
+          </header>
+          <div *ngIf="true">{{ logTemplate() }}</div>
+
+              
+          <div class="product">
+            <app-product *ngFor="let prod of world.products" [prod]="prod" (worldChanged)="handleWorldChanged()" ></app-product>
+
+          </div>
+        </div>
       </div>
+      <router-outlet />
+    </main>
     </div>
-  </div>
-  <router-outlet />
-</main>
+

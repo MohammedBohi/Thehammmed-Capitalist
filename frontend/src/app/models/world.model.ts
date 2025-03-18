@@ -2,14 +2,14 @@ import { Product } from './product.model';
 import { Palier } from './palier.model';
 
 export class World {
-  name!: string;
-  logo!: string;
-  money!: number;
-  score!: number;
-  totalangels!: number;
-  activeangels!: number;
-  angelbonus!: number;
-  lastupdate!: number;
+  name: string = '';
+  logo: string = '';
+  money: number = 0;
+  score: number = 0;
+  totalangels: number = 0;
+  activeangels: number = 0;
+  angelbonus: number = 0;
+  lastupdate: number = Date.now();
   products: Product[] = [];
   allunlocks: Palier[] = [];
   upgrades: Palier[] = [];
