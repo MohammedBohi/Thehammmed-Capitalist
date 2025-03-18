@@ -2,68 +2,15 @@
   href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
   rel="stylesheet"
 />
-
-<div class="main_page_ange">
-  <div class="titre_ange">Les météorites</div>
-  <div class="main_ange">
-    <app-unmanager
-      class="un_ange"
-      [imageManager]="'/trex3.png'"
-      [nomManager]="'Tyrannosaurus rex'"
-      [bonusManager]="'production t-rex x 3000'"
-      [prixManager]="'300000 météorites'"
-      [texte]="'Acheter'"
-    >
-    </app-unmanager>
-
-    <app-unmanager
-      class="un_ange"
-      [imageManager]="'/Triceratops3.png'"
-      [nomManager]="'Triceratops horridus'"
-      [bonusManager]="'production tritri x 5'"
-      [prixManager]="'500000 météorites'"
-      [texte]="'Acheter'"
-    >
-    </app-unmanager>
-
-    <app-unmanager
-      class="un_ange"
-      [imageManager]="'/diplo3.png'"
-      [nomManager]="'Diplodocus hallorum'"
-      [bonusManager]="'production diplo x 3 !'"
-      [prixManager]="'500000 météorites'"
-      [texte]="'Acheter'"
-    >
-    </app-unmanager>
-
-    <app-unmanager
-      class="un_ange"
-      [imageManager]="'/raptor3.png'"
-      [nomManager]="' Velociraptorinae'"
-      [bonusManager]="'production raptor x 3 !'"
-      [prixManager]="'500000 météorites'"
-      [texte]="'Acheter'"
-    >
-    </app-unmanager>
-
-    <app-unmanager
-      class="un_ange"
-      [imageManager]="'/mausasaurus3.png'"
-      [nomManager]="'Mosasaurus hoffmanni'"
-      [bonusManager]="'production mausasaurus x 3 !'"
-      [prixManager]="'500000 météorites'"
-      [texte]="'Acheter'"
-    >
-    </app-unmanager>
-
-    <app-unmanager
-      class="un_ange"
-      [imageManager]="'/spino3.png'"
-      [nomManager]="'Spinosaurus aegyptiacus'"
-      [bonusManager]="'production spino x 3 !'"
-      [prixManager]="'500000 météorites'"
-      [texte]="'Acheter'"
-    >
-    </app-unmanager>
-  </div>
-</div>
+<ng-container *ngFor="let upgrade of getFilteredAngelUpgrades()">
+  <app-unmanager
+    class="un_ange"
+    [imageManager]="upgrade.logo"
+    [nomManager]="upgrade.name"
+    [bonusManager]="'Bonus : ' + upgrade.typeratio + ' x' + upgrade.ratio"
+    [prixManager]="upgrade.seuil + ' Anges'"
+    [texte]="'Acheter'"
+    [isDisabled]="upgrade.unlocked || world.activeangels < upgrade.seuil"
+    (onHire)="acheterAngelUpgrade(upgrade)">
+  </app-unmanager>
+</ng-container>

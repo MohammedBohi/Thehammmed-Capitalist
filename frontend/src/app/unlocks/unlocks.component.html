@@ -1,44 +1,18 @@
-<link
-  href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
-  rel="stylesheet"
-/>
-
-<div class="titre_unlocks">unlocks</div>
-
-<div class="tout">
-  <div class="unlocloc">
-    <div class="palier">Prochain pallier à atteindre : 1000</div>
-    <img class="une_image" src="/trex1.png" />
-    <div class="le_bonus">Trex x 2</div>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <div class="titre_unlocks">unlocks</div>
+  <div class="tout">
+    <div class="unlocloc" *ngFor="let unlock of getFilteredUnlocks()">
+      <div class="palier">Prochain pallier à atteindre : {{ unlock.seuil }}</div>
+      <img class="une_image" [src]="unlock.logo" />
+      <div class="le_bonus">{{ unlock.name }} - Bonus : {{ unlock.typeratio }} x {{ unlock.ratio }}</div>
+      <button 
+        [disabled]="unlock.unlocked || !checkCondition(unlock)" 
+        (click)="applyUnlock(unlock)">
+        Débloquer
+      </button>
+    </div>
   </div>
-
-  <div class="unlocloc">
-    <div class="palier">Prochain pallier à atteindre : 1</div>
-    <img class="une_image" src="/Triceratops1.png" />
-    <div class="le_bonus">Triceratops x 2</div>
-  </div>
-
-  <div class="unlocloc">
-    <div class="palier">Prochain pallier à atteindre : 1000</div>
-    <img class="une_image" src="/diplo1.png" />
-    <div class="le_bonus">Diplo x 2</div>
-  </div>
-
-  <div class="unlocloc">
-    <div class="palier">Prochain pallier à atteindre : 1</div>
-    <img class="une_image" src="/raptor1.png" />
-    <div class="le_bonus">Raptor x 2</div>
-  </div>
-
-  <div class="unlocloc">
-    <div class="palier">Prochain pallier à atteindre : 1000</div>
-    <img class="une_image" src="/mausasaurus1.png" />
-    <div class="le_bonus">Truc qui nage x 2</div>
-  </div>
-
-  <div class="unlocloc">
-    <div class="palier">Prochain pallier à atteindre : 1000</div>
-    <img class="une_image" src="/spino1.png" />
-    <div class="le_bonus">Spino x 2</div>
-  </div>
-</div>
+  

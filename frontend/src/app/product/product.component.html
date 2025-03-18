@@ -14,24 +14,23 @@
       <h3 class="nom_dino">{{ prod.name }}</h3>
 
       <button class="train" (click)="acheterDino()">
-        <div>Acheter</div>
-        <div>{{ prod.cout | number: '1.0-0' }} $</div>
+        <div>Acheter {{ multiplicateur === -1 ? 'MAX' : 'x' + multiplicateur }}</div>
+        <div>{{ calculateTotalCost(multiplicateur === -1 ? calcMaxCanBuy() : multiplicateur) | number:'1.2-2' }} $</div>
       </button>
       <div class="revenu">
-        + {{ prod.revenu | number: '1.0-0' }} $ / production
+        + {{ prod.revenu * prod.quantite | number:'1.2-2' }} $ / production
       </div>
 
       <app-progressbar
       *ngIf="prod.timeleft > 0"
-      [run]="true"
-      [auto]="true"
-      frontcolor="#368484"
-      [orientation]="Orientation.horizontal"
-      [vitesse]="prod.vitesse"
-      [initialValue]="0"
-      (productionComplete)="onProductionComplete()"
-
-      >
+  [run]="run"
+  [auto]="true"
+  frontcolor="#368484"
+  [orientation]="Orientation.horizontal"
+  [vitesse]="prod.vitesse"
+  [initialValue]="0"
+  (productionComplete)="terminerProduction()"
+>
       </app-progressbar>
       <div class="infos_product">
         <div class="palier">

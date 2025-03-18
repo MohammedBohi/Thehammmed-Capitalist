@@ -4,8 +4,9 @@
     import { Orientation } from '../progressbar/progressbar.component';
     import { TimerComponent } from '../timer/timer.component';
     import { CommonModule } from '@angular/common';  
-    
     import { WebserviceService } from '../webservice.service';
+    import { ChangeDetectorRef } from '@angular/core';
+    import { World } from '../models/world.model';
 
 
 
@@ -19,9 +20,16 @@
     export class ProductComponent {
       @Input() prod!: Product;
       Orientation = Orientation;
-      user: string = 'DinoMaster'; // 🦖 Nom d'utilisateur par défaut
+      @Input() username!: string;
+      @Output() onBuy = new EventEmitter<number>();
       productImage: string = "/blanc.png";
-      constructor(private service: WebserviceService) {}
+      constructor(private service: WebserviceService, private cdRef: ChangeDetectorRef) {}
+
+      @Output() productionDone = new EventEmitter<number>();
+      run: boolean = false;
+      intervalId: any; 
+      @Input() multiplicateur!: number;
+      @Input() world!: World; 
 
 
       // Définition des images d'évolution pour chaque dinosaure
@@ -35,61 +43,116 @@
       };
 
       
-      //Le setter appelé quand valeur de l'input est modifiée,
-      //donc quand le composant parent (AppComponent) passe un nouveau Product au composant ProductComponent
+  
+      ngOnInit() {
+        this.intervalId = setInterval(() => {
+          if (this.prod && this.prod.timeleft > 0) {
+            this.prod.timeleft -= 100;
+            if (this.prod.timeleft <= 0) {
+              this.prod.timeleft = 0;
+              this.run = false;
+              this.terminerProduction();
+            }
+          }
+        }, 100);
+        if (this.prod.managerUnlocked && this.prod.timeleft <= 0) {
+          this.autoStartProduction();
+        }
 
+      }
+      
+      ngOnDestroy() {
+        if (this.intervalId) clearInterval(this.intervalId);
+      }
       ngOnChanges() {
         if (this.prod) {
           this.updateProductImage();
-          console.log('Rendering le composant !', this.prod);
+        }
+        if (this.prod.managerUnlocked && this.prod.timeleft <= 0) {
+          this.autoStartProduction();
+        }
+      }
+      autoStartProduction() {
+        if (this.prod && this.prod.quantite > 0 && this.prod.timeleft <= 0) {
+          this.service.lancerProduction(this.username, this.prod).then(() => {
+            this.prod.timeleft = this.prod.vitesse;
+            this.run = true;
+            this.cdRef.detectChanges();
+          });
         }
       }
       
       
     // Fonction qui retourne l'image correcte en fonction du niveau du dinosaure
-    @Output() worldChanged = new EventEmitter<void>();
 
-      updateProductImage() {
-        if (!this.prod || !this.prod.name) {
-          this.productImage = "/blanc.png"; 
-          console.warn("⚠️ Aucun produit ou nom trouvé, image par défaut appliquée.");
-          return;
-        }
-        console.log("🦕 Mapping image pour :", this.prod.name);
-
-        const images = this.evolutionImages[this.prod.name] || [];
-        let level = 0;
-      
-        if (this.prod.quantite >= 50) {
-          level = 2;
-        } else if (this.prod.quantite >= 20) {
-          level = 1;
-        }
-      
-        this.productImage = images[level] ? images[level] : "/blanc.png"; 
-        console.log(`🦖 Image sélectionnée pour ${this.prod.name} : ${this.productImage}`)
+    updateProductImage() {
+      if (this.prod.quantite <= 0) {
+        this.productImage = '/oeuf.png'; 
+        return;
       }
-      acheterDino() {
-        this.service.acheterProduit(this.user, this.prod.id, 1);
-        this.worldChanged.emit(); // ✅ Indispensable
+    
+      const images = this.evolutionImages[this.prod.name] || [];
+      let level = 0;
+      if (this.prod.quantite >= 50) level = 2;
+      else if (this.prod.quantite >= 20) level = 1;
+      this.productImage = images[level] ? images[level] : "/blanc.png";
+    }
+    acheterDino() {
+      const quantite = this.multiplicateur === -1 ? this.calcMaxCanBuy() : this.multiplicateur;
+  const prixTotal = this.calculateTotalCost(quantite);
 
-      }
+  if (prixTotal > (this.world.money || 0)) {
+    console.warn("⛔ Pas assez d'argent !");
+    return;
+  }
+  
+
+  this.service.acheterQtProduit(this.username, this.prod, quantite).then((res) => {
+    const updatedProduct = res.data.acheterQtProduit;
+    this.prod.quantite = updatedProduct.quantite;
+    this.prod.cout = updatedProduct.cout;
+    this.prod.revenu = updatedProduct.revenu;
+
+    this.updateProductImage();
+    this.cdRef.detectChanges();
+    this.onBuy.emit(prixTotal);
+  });
+    }
+    
       
       
     
     
-      entrainerDino() {
-        if (!this.prod || this.prod.timeleft > 0 || this.prod.quantite <= 0) return;
-        this.service.lancerProduction(this.user, this.prod.id);
-        this.worldChanged.emit(); // ✅ Indispensable
+    entrainerDino() {
+      if (!this.prod || this.prod.quantite <= 0 || this.prod.timeleft > 0) return;
 
-      }
-      
-      
-      onProductionComplete() {
-        this.service.updateTimeleft(this.prod.id, 0); // Tu peux créer une méthode simple dans le service pour ça.
-      }
-      
+  this.service.lancerProduction(this.username, this.prod).then(() => {
+    this.prod.timeleft = this.prod.vitesse;
+    this.run = true;
+  });
+}
+  
+     
+    terminerProduction() {
+      const totalGain = this.prod.revenu * this.prod.quantite;
+      this.productionDone.emit(totalGain);
+    
+      this.run = false;  
+    }
+    calcMaxCanBuy(): number {
+      const cout = this.prod.cout;
+      const croissance = this.prod.croissance;
+      const argent = this.world.money || 0;
+      const max = Math.floor(Math.log((argent * (croissance - 1)) / cout + 1) / Math.log(croissance));
+      return Math.max(0, max);
+    }
+    
+    calculateTotalCost(quantite: number): number {
+      const cout = this.prod.cout;
+      const croissance = this.prod.croissance;
+      return cout * ((1 - Math.pow(croissance, quantite)) / (1 - croissance));
+    }
+    
       
       
     }

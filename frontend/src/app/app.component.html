@@ -3,25 +3,90 @@
     <main class="classe">
       <div class="main_principal" #mainPrincipal>
         <div class="main_sidebar">
-          <app-sidebar></app-sidebar>
+          <app-sidebar (showManagersEvent)="toggleManagers()"
+          (showUpgradesEvent)="toggleCashUpgrades()"
+          (showAngelUpgradesEvent)="toggleAngelUpgrades()"
+          (showUnlocksEvent)="toggleUnlocks()"
+          (showInvestorsEvent)="toggleInvestors()">
+
+          ></app-sidebar>
         </div>
 
         <div class="main_secondaire">
           <header class="header">
             <div class="lesSous">
               <img src="os.png" alt="image" class="image_os" />
-              : {{ world.money | number:'1.0-0' }} $
+              : {{ world.money | number:'1.2-2' }} $
             </div>          
-            <h1 class="worldname">Nom du monde{{ world.name }}</h1>
+            <h1 class="worldname">{{ world.name }}</h1>
+            <div class="multiplier-container" (click)="onMultiplierChange()">
+              <span class="multiplier-btn">
+                {{ multiplicateur === -1 ? 'MAX' : 'x' + multiplicateur }}
+              </span>
+            </div>
+          
           </header>
-          <div *ngIf="true">{{ logTemplate() }}</div>
 
-              
+          
           <div class="product">
-            <app-product *ngFor="let prod of world.products" [prod]="prod" (worldChanged)="handleWorldChanged()" ></app-product>
+            <app-product *ngFor="let prod of world.products" [prod]="prod"  [username]="user"     [world]="world"   
+             [multiplicateur]="multiplicateur"
+
+            (onBuy)="retirerArgent($event)"
+            (productionDone)="ajouterArgent($event)">
+
+
+              </app-product>
+<!-- Popup Manager -->
+
 
           </div>
         </div>
+        <div *ngIf="showManagers" class="popup">
+          <div class="popup-content">
+            <button class="close-btn" (click)="toggleManagers()">X</button>
+            <app-managers [world]="world" [server]="webService.server"></app-managers>
+          </div>
+        </div>
+        <div *ngIf="showCashUpgrades" class="popup">
+          <div class="popup-content">
+            <button class="close-btn" (click)="toggleCashUpgrades()">X</button>
+            <app-upgradeproducts 
+              [world]="world" 
+              [server]="webService.server"
+              (onBuyUpgrade)="acheterCashUpgrade($event)">
+            </app-upgradeproducts>
+          </div>
+        </div>
+        
+        <!-- Popup des Angel Upgrades -->
+        <div *ngIf="showAngelUpgrades" class="popup">
+          <div class="popup-content">
+            <button class="close-btn" (click)="toggleAngelUpgrades()">X</button>
+            <app-upgradeangels 
+              [world]="world" 
+              [server]="webService.server"
+              (onBuyAngelUpgrade)="acheterAngelUpgrade($event)">
+            </app-upgradeangels>
+          </div>
+        </div>
+        <div *ngIf="showUnlocks" class="popup">
+          <div class="popup-content">
+            <button class="close-btn" (click)="toggleUnlocks()">X</button>
+            <app-unlocks [world]="world" [server]="webService.server"></app-unlocks>
+          </div>
+        </div>
+        <div *ngIf="showInvestors" class="popup">
+          <div class="popup-content">
+            <button class="close-btn" (click)="toggleInvestors()">X</button>
+            <app-investors 
+              [world]="world" 
+              (onClaim)="resetWorld()">
+            </app-investors>
+          </div>
+        </div>
+        
+        
       </div>
       <router-outlet />
     </main>

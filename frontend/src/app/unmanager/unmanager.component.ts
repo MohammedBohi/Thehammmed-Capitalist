@@ -1,15 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { World } from '../models/world.model';
 
 @Component({
   selector: 'app-unmanager',
-  imports: [],
   templateUrl: './unmanager.component.html',
-  styleUrl: './unmanager.component.css',
+  styleUrls: ['./unmanager.component.css'],
+  standalone: true
 })
 export class UnmanagerComponent {
+ 
+
   @Input() imageManager = '';
-  @Input() nomManager = 'Dora';
-  @Input() bonusManager = 'Bonus';
-  @Input() prixManager = 'Il est trop cher pour toi';
-  @Input() texte = 'acheter';
+  @Input() nomManager = '';
+  @Input() bonusManager = '';
+  @Input() prixManager = '';
+  @Input() texte = 'Engager';
+  @Input() isDisabled = false;
+
+  @Output() onHire = new EventEmitter<void>();
 }
